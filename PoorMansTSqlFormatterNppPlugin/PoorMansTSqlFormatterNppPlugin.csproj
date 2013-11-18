@@ -93,6 +93,10 @@
       <Project>{4C350944-937B-4416-8442-3197FC7098F2}</Project>
       <Name>PoorMansTSqlFormatterPluginShared</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SybaseTSqlFormatterLib\SybaseTSqlFormatterLib.csproj">
+      <Project>{925CF211-F368-4778-B7E4-381A2C5A5994}</Project>
+      <Name>SybaseTSqlFormatterLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

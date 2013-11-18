@@ -36,6 +36,7 @@ namespace PoorMansTSqlFormatterPluginShared
             ResourceManager _generalResourceManager = new ResourceManager("PoorMansTSqlFormatterPluginShared.GeneralLanguageContent", Assembly.GetExecutingAssembly());
             formatter.ErrorOutputPrefix = _generalResourceManager.GetString("ParseErrorWarningPrefix") + System.Environment.NewLine;
             var formattingManager = new PoorMansTSqlFormatterLib.SqlFormattingManager(formatter);
+            formattingManager.Parser = new SybaseTSqlFormatterLib.Parsers.SybaseTSqlParser();
             return formattingManager;
         }
     }

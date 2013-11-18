@@ -2,7 +2,7 @@ REM Merge third-party and satellite (translation) assemblies into a single new e
 
 IF EXIST %1SqlFormatter.exe DEL %1SqlFormatter.exe
 
-"..\..\..\ExternalBuildTools\ILRepack\ILRepack.exe" /t:exe /out:%1SqlFormatterTemp.exe %1SqlFormatterExeAssembly.exe %1PoorMansTSqlFormatterLib.dll %1NDesk.Options.dll %1LinqBridge.dll %1es\SqlFormatterExeAssembly.resources.dll
+"..\..\..\ExternalBuildTools\ILRepack\ILRepack.exe" /t:exe /out:%1SqlFormatterTemp.exe %1SqlFormatterExeAssembly.exe %1PoorMansTSqlFormatterLib.dll %1SybaseTSqlFormatterLib.dll %1NDesk.Options.dll %1LinqBridge.dll %1es\SqlFormatterExeAssembly.resources.dll
 IF %ERRORLEVEL% NEQ 0 GOTO END
 
 "..\..\..\ExternalBuildTools\ILRepack\ILRepack.exe" /t:exe /out:%1SqlFormatter.exe %1SqlFormatterTemp.exe %1fr\SqlFormatterExeAssembly.resources.dll
@@ -12,6 +12,8 @@ del %1LinqBridge.dll
 del %1NDesk.Options.dll
 del %1PoorMansTSqlFormatterLib.dll
 del %1PoorMansTSqlFormatterLib.pdb
+del %1SybaseTSqlFormatterLib.dll
+del %1SybaseTSqlFormatterLib.pdb
 del %1SqlFormatterExeAssembly.exe
 del %1SqlFormatterExeAssembly.pdb
 del %1SqlFormatterTemp.exe

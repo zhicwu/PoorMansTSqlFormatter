@@ -120,6 +120,10 @@
       <Project>{ADBDFDCA-CAB6-4569-9151-0BD42E65B400}</Project>
       <Name>PoorMansTSqlFormatterLib</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SybaseTSqlFormatterLib\SybaseTSqlFormatterLib.csproj">
+      <Project>{925CF211-F368-4778-B7E4-381A2C5A5994}</Project>
+      <Name>SybaseTSqlFormatterLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
