@@ -187,6 +187,8 @@ r   recursive (predeterminado: falso)
 b   backups (predeterminado: verdadero)
 b   outputFileOrFolder (predeterminado: ninguno; si se incluye, anula la option "backups")
 l   languageCode (predeterminado: idioma actual si es soportado; optiones soportadas incluyen EN, FR y ES)
+sbp use Sybase parser instead (default: false)
+x   generate XML for further analysis (default: false)
 h ? help
 
 Se pueden desactivar opciones booleanas siguendolas de un "menos", o activarlas con solo incluirlas o siguendolas de un "mas".

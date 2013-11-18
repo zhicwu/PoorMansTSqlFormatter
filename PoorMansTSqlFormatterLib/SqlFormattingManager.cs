@@ -59,8 +59,16 @@ namespace PoorMansTSqlFormatterLib
 
         public string Format(string inputSQL, ref bool errorEncountered)
         {
+            string xml = string.Empty;
+            return Format(inputSQL, ref errorEncountered, ref xml);
+        }
+
+        // added for XML output support
+        public string Format(string inputSQL, ref bool errorEncountered, ref string xml)
+        {
             XmlDocument sqlTree = Parser.ParseSQL(Tokenizer.TokenizeSQL(inputSQL));
             errorEncountered = (sqlTree.SelectSingleNode(string.Format("/{0}/@{1}[.=1]", Interfaces.SqlXmlConstants.ENAME_SQL_ROOT, Interfaces.SqlXmlConstants.ANAME_ERRORFOUND)) != null);
+            xml = sqlTree.OuterXml;
             return Formatter.FormatSQLTree(sqlTree);
         }
 

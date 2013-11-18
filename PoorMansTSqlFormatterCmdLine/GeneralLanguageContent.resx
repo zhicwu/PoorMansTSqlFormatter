@@ -186,6 +186,8 @@ r   recursive (default: false)
 b   backups (default: true)
 b   outputFileOrFolder (default: none; if set, overrides the backup option)
 l   languageCode (default: current if supported or EN; valid values include EN, FR and ES)
+sbp use Sybase parser instead (default: false)
+x   generate XML for further analysis (default: false)
 h ? help
 
 Disable boolean options with a trailing minus, enable by just specifying them or with a trailing plus.

@@ -42,24 +42,24 @@ namespace PoorMansTSqlFormatterCmdLine
         {
             //formatter engine option defaults
             var options = new PoorMansTSqlFormatterLib.Formatters.TSqlStandardFormatterOptions
-                {
-                    KeywordStandardization = true,
-                    IndentString = "\t",
-                    SpacesPerTab = 4,
-					MaxLineWidth = 999,
-					NewStatementLineBreaks = 2,
-					NewClauseLineBreaks = 1,
-					TrailingCommas = false,
-                    SpaceAfterExpandedComma = false,
-                    ExpandBetweenConditions = true,
-                    ExpandBooleanExpressions = true,
-                    ExpandCaseStatements = true,
-                    ExpandCommaLists = true,
-                    BreakJoinOnSections = false,
-                    UppercaseKeywords = true,
-					ExpandInLists = true
-                };
-            
+            {
+                KeywordStandardization = true,
+                IndentString = "\t",
+                SpacesPerTab = 4,
+                MaxLineWidth = 999,
+                NewStatementLineBreaks = 2,
+                NewClauseLineBreaks = 1,
+                TrailingCommas = false,
+                SpaceAfterExpandedComma = false,
+                ExpandBetweenConditions = true,
+                ExpandBooleanExpressions = true,
+                ExpandCaseStatements = true,
+                ExpandCommaLists = true,
+                BreakJoinOnSections = false,
+                UppercaseKeywords = true,
+                ExpandInLists = true
+            };
+
             //bulk formatter options
             bool allowParsingErrors = false;
             List<string> extensions = new List<string>();
@@ -72,31 +72,36 @@ namespace PoorMansTSqlFormatterCmdLine
             bool showUsageFriendly = false;
             bool showUsageError = false;
 
-            OptionSet p = new OptionSet()
-              .Add("is|indentString=", delegate(string v) { options.IndentString = v; })
-              .Add("st|spacesPerTab=", delegate(string v) { options.SpacesPerTab = int.Parse(v); })
-              .Add("mw|maxLineWidth=", delegate(string v) { options.MaxLineWidth = int.Parse(v); })
-			  .Add("sb|statementBreaks=", delegate(string v) { options.NewStatementLineBreaks = int.Parse(v); })
-			  .Add("cb|clauseBreaks=", delegate(string v) { options.NewClauseLineBreaks = int.Parse(v); })
-			  .Add("tc|trailingCommas", delegate(string v) { options.TrailingCommas = v != null; })
-              .Add("sac|spaceAfterExpandedComma", delegate(string v) { options.SpaceAfterExpandedComma = v != null; })
-              .Add("ebc|expandBetweenConditions", delegate(string v) { options.ExpandBetweenConditions = v != null; })
-              .Add("ebe|expandBooleanExpressions", delegate(string v) { options.ExpandBooleanExpressions = v != null; })
-              .Add("ecs|expandCaseStatements", delegate(string v) { options.ExpandCaseStatements = v != null; })
-			  .Add("ecl|expandCommaLists", delegate(string v) { options.ExpandCommaLists = v != null; })
-			  .Add("eil|expandInLists", delegate(string v) { options.ExpandInLists = v != null; })
-			  .Add("bjo|breakJoinOnSections", delegate(string v) { options.BreakJoinOnSections = v != null; })
-              .Add("uk|uppercaseKeywords", delegate(string v) { options.UppercaseKeywords = v != null; })
-              .Add("sk|standardizeKeywords", delegate(string v) { options.KeywordStandardization = v != null; })
+            bool useSybaseParser = false;
+            bool generateXml = false;
 
-              .Add("ae|allowParsingErrors", delegate(string v) { allowParsingErrors = v != null; })
-              .Add("e|extensions=", delegate(string v) { extensions.Add((v.StartsWith(".") ? "" : ".") + v); })
-              .Add("r|recursive", delegate(string v) { recursiveSearch = v != null; })
-              .Add("b|backups", delegate(string v) { backups = v != null; })
-              .Add("o|outputFileOrFolder=", delegate(string v) { outputFileOrFolder = v; })
-              .Add("l|languageCode=", delegate(string v) { uiLangCode = v; })
-              .Add("h|?|help", delegate(string v) { showUsageFriendly = v != null; })
-                  ;
+            OptionSet p = new OptionSet()
+                .Add("is|indentString=", delegate(string v) { options.IndentString = v; })
+                .Add("st|spacesPerTab=", delegate(string v) { options.SpacesPerTab = int.Parse(v); })
+                .Add("mw|maxLineWidth=", delegate(string v) { options.MaxLineWidth = int.Parse(v); })
+                .Add("sb|statementBreaks=", delegate(string v) { options.NewStatementLineBreaks = int.Parse(v); })
+                .Add("cb|clauseBreaks=", delegate(string v) { options.NewClauseLineBreaks = int.Parse(v); })
+                .Add("tc|trailingCommas", delegate(string v) { options.TrailingCommas = v != null; })
+                .Add("sac|spaceAfterExpandedComma", delegate(string v) { options.SpaceAfterExpandedComma = v != null; })
+                .Add("ebc|expandBetweenConditions", delegate(string v) { options.ExpandBetweenConditions = v != null; })
+                .Add("ebe|expandBooleanExpressions", delegate(string v) { options.ExpandBooleanExpressions = v != null; })
+                .Add("ecs|expandCaseStatements", delegate(string v) { options.ExpandCaseStatements = v != null; })
+                .Add("ecl|expandCommaLists", delegate(string v) { options.ExpandCommaLists = v != null; })
+                .Add("eil|expandInLists", delegate(string v) { options.ExpandInLists = v != null; })
+                .Add("bjo|breakJoinOnSections", delegate(string v) { options.BreakJoinOnSections = v != null; })
+                .Add("uk|uppercaseKeywords", delegate(string v) { options.UppercaseKeywords = v != null; })
+                .Add("sk|standardizeKeywords", delegate(string v) { options.KeywordStandardization = v != null; })
+
+                .Add("ae|allowParsingErrors", delegate(string v) { allowParsingErrors = v != null; })
+                .Add("e|extensions=", delegate(string v) { extensions.Add((v.StartsWith(".") ? "" : ".") + v); })
+                .Add("r|recursive", delegate(string v) { recursiveSearch = v != null; })
+                .Add("b|backups", delegate(string v) { backups = v != null; })
+                .Add("o|outputFileOrFolder=", delegate(string v) { outputFileOrFolder = v; })
+                .Add("l|languageCode=", delegate(string v) { uiLangCode = v; })
+                .Add("sbp|useSybaseParser", delegate(string v) { useSybaseParser = v != null; })
+                .Add("x|generateXml", delegate(string v) { generateXml = v != null; })
+                .Add("h|?|help", delegate(string v) { showUsageFriendly = v != null; })
+                ;
 
             //first parse the args
             List<string> remainingArgs = p.Parse(args);
@@ -108,7 +113,7 @@ namespace PoorMansTSqlFormatterCmdLine
                 if (!uiLangCode.Equals(UILANGUAGE_EN)
                     && !uiLangCode.Equals(UILANGUAGE_FR)
                     && !uiLangCode.Equals(UILANGUAGE_ES)
-                    )
+                )
                 {
                     showUsageError = true;
                     //get the resource manager with default language, before displaying error.
@@ -152,8 +157,11 @@ namespace PoorMansTSqlFormatterCmdLine
                 Console.Error.WriteLine(_generalResourceManager.GetString("UnrecognizedArgumentsErrorMessage"));
             }
 
-            if (extensions.Count == 0)
+            if (extensions.Count == 0) {
+                // add sp extension support
+                extensions.Add(".sp");
                 extensions.Add(".sql");
+            }
 
             if (showUsageFriendly || showUsageError)
             {
@@ -167,16 +175,25 @@ namespace PoorMansTSqlFormatterCmdLine
             var formatter = new PoorMansTSqlFormatterLib.Formatters.TSqlStandardFormatter(options);
             formatter.ErrorOutputPrefix = _generalResourceManager.GetString("ParseErrorWarningPrefix") + Environment.NewLine;
             var formattingManager = new PoorMansTSqlFormatterLib.SqlFormattingManager(formatter);
+            if (useSybaseParser) {
+                formattingManager.Parser = new SybaseTSqlFormatterLib.Parsers.SybaseTSqlParser();
+            }
 
             bool warningEncountered = false;
             if (!string.IsNullOrEmpty(stdInput))
             {
+                string xmlOutput = null;
                 string formattedOutput = null;
                 bool parsingError = false;
                 Exception parseException = null;
                 try
                 {
-                    formattedOutput = formattingManager.Format(stdInput, ref parsingError);
+                    formattedOutput = formattingManager.Format(stdInput, ref parsingError, ref xmlOutput);
+                    // output XML
+                    if (!generateXml)
+                    {
+                        xmlOutput = null;
+                    }
 
                     //hide any handled parsing issues if they were requested to be allowed
                     if (allowParsingErrors) parsingError = false;
@@ -198,11 +215,15 @@ namespace PoorMansTSqlFormatterCmdLine
                 {
                     if (!string.IsNullOrEmpty(outputFileOrFolder))
                     {
-                        WriteResultFile(outputFileOrFolder, null, null, ref warningEncountered, formattedOutput);
+                        WriteResultFile(outputFileOrFolder, null, null, ref warningEncountered, formattedOutput, xmlOutput);
                     }
                     else
                     {
                         Console.OutputEncoding = Encoding.UTF8;
+                        if (!string.IsNullOrEmpty(xmlOutput))
+                        {
+                            Console.Out.WriteLine(xmlOutput);
+                        }
                         Console.Out.WriteLine(formattedOutput);
                     }
                 }
@@ -255,7 +276,7 @@ namespace PoorMansTSqlFormatterCmdLine
 
                     if (Directory.Exists(outputFileOrFolder)
                         && (File.GetAttributes(outputFileOrFolder) & FileAttributes.Directory) == FileAttributes.Directory
-                        )
+                    )
                     {
                         replaceFromFolderPath = baseDirectory.FullName;
                         replaceToFolderPath = new DirectoryInfo(outputFileOrFolder).FullName;
@@ -276,7 +297,7 @@ namespace PoorMansTSqlFormatterCmdLine
                     }
                 }
 
-                if (!ProcessSearchResults(extensions, backups, allowParsingErrors, formattingManager, matchingObjects, singleFileWriter, replaceFromFolderPath, replaceToFolderPath, ref warningEncountered))
+                if (!ProcessSearchResults(extensions, generateXml, backups, allowParsingErrors, formattingManager, matchingObjects, singleFileWriter, replaceFromFolderPath, replaceToFolderPath, ref warningEncountered))
                 {
                     Console.Error.WriteLine(string.Format(_generalResourceManager.GetString("NoFilesFoundWarningMessage"), remainingArgs[0], string.Join(",", extensions.ToArray())));
                     return 4;
@@ -296,7 +317,7 @@ namespace PoorMansTSqlFormatterCmdLine
                 return 0; //we got there, did something, and received no (handled) errors!
         }
 
-        private static bool ProcessSearchResults(List<string> extensions, bool backups, bool allowParsingErrors, PoorMansTSqlFormatterLib.SqlFormattingManager formattingManager, FileSystemInfo[] matchingObjects, StreamWriter singleFileWriter, string replaceFromFolderPath, string replaceToFolderPath, ref bool warningEncountered)
+        private static bool ProcessSearchResults(List<string> extensions, bool generateXml, bool backups, bool allowParsingErrors, PoorMansTSqlFormatterLib.SqlFormattingManager formattingManager, FileSystemInfo[] matchingObjects, StreamWriter singleFileWriter, string replaceFromFolderPath, string replaceToFolderPath, ref bool warningEncountered)
         {
             bool fileFound = false;
 
@@ -306,13 +327,13 @@ namespace PoorMansTSqlFormatterCmdLine
                 {
                     if (extensions.Contains(fsEntry.Extension))
                     {
-                        ReFormatFile((FileInfo)fsEntry, formattingManager, backups, allowParsingErrors, singleFileWriter, replaceFromFolderPath, replaceToFolderPath, ref warningEncountered);
+                        ReFormatFile((FileInfo)fsEntry, formattingManager, generateXml, backups, allowParsingErrors, singleFileWriter, replaceFromFolderPath, replaceToFolderPath, ref warningEncountered);
                         fileFound = true;
                     }
                 }
                 else
                 {
-                    if (ProcessSearchResults(extensions, backups, allowParsingErrors, formattingManager, ((System.IO.DirectoryInfo)fsEntry).GetFileSystemInfos(), singleFileWriter, replaceFromFolderPath, replaceToFolderPath, ref warningEncountered))
+                    if (ProcessSearchResults(extensions, generateXml, backups, allowParsingErrors, formattingManager, ((System.IO.DirectoryInfo)fsEntry).GetFileSystemInfos(), singleFileWriter, replaceFromFolderPath, replaceToFolderPath, ref warningEncountered))
                         fileFound = true;
                 }
             }
@@ -320,11 +341,12 @@ namespace PoorMansTSqlFormatterCmdLine
             return fileFound;
         }
 
-        private static void ReFormatFile(FileInfo fileInfo, PoorMansTSqlFormatterLib.SqlFormattingManager formattingManager, bool backups, bool allowParsingErrors, StreamWriter singleFileWriter, string replaceFromFolderPath, string replaceToFolderPath, ref bool warningEncountered)
+        private static void ReFormatFile(FileInfo fileInfo, PoorMansTSqlFormatterLib.SqlFormattingManager formattingManager, bool generateXml, bool backups, bool allowParsingErrors, StreamWriter singleFileWriter, string replaceFromFolderPath, string replaceToFolderPath, ref bool warningEncountered)
         {
             bool failedBackup = false;
             string oldFileContents = "";
             string newFileContents = "";
+            string xmlOutput = "";
             bool parsingError = false;
             bool failedFolder = false;
             Exception parseException = null;
@@ -346,7 +368,11 @@ namespace PoorMansTSqlFormatterCmdLine
             {
                 try
                 {
-                    newFileContents = formattingManager.Format(oldFileContents, ref parsingError);
+                    newFileContents = formattingManager.Format(oldFileContents, ref parsingError, ref xmlOutput);
+                    if (!generateXml)
+                    {
+                        xmlOutput = null;
+                    }
 
                     //hide any handled parsing issues if they were requested to be allowed
                     if (allowParsingErrors) parsingError = false;
@@ -367,13 +393,13 @@ namespace PoorMansTSqlFormatterCmdLine
             }
             if (!parsingError
                 && (
-                        (newFileContents.Length > 0 
+                    (newFileContents.Length > 0 
                         && !oldFileContents.Equals(newFileContents)
-                        )
-                        || singleFileWriter != null
-                        || (replaceFromFolderPath != null && replaceToFolderPath != null)
                     )
+                    || singleFileWriter != null
+                    || (replaceFromFolderPath != null && replaceToFolderPath != null)
                 )
+            )
 
             {
                 if (backups)
@@ -395,6 +421,11 @@ namespace PoorMansTSqlFormatterCmdLine
                     if (singleFileWriter != null)
                     {
                         //we'll assume that running out of disk space, and other while-you-are-writing errors, and not worth worrying about
+                        if (!string.IsNullOrEmpty(xmlOutput))
+                        {
+                            File.WriteAllText(fileInfo.FullName + ".xml", xmlOutput);
+                            Console.WriteLine(" => XML generated: " + fileInfo.FullName + ".xml");
+                        }
                         singleFileWriter.WriteLine(newFileContents);
                         singleFileWriter.WriteLine("GO");
                     }
@@ -422,17 +453,22 @@ namespace PoorMansTSqlFormatterCmdLine
 
                         if (!failedFolder)
                         {
-                            WriteResultFile(fullTargetPath, replaceFromFolderPath, replaceToFolderPath, ref warningEncountered, newFileContents);
+                            WriteResultFile(fullTargetPath, replaceFromFolderPath, replaceToFolderPath, ref warningEncountered, newFileContents, xmlOutput);
                         }
                     }
                 }
             }
         }
 
-        private static void WriteResultFile(string targetFilePath, string replaceFromFolderPath, string replaceToFolderPath, ref bool warningEncountered, string newFileContents)
+        private static void WriteResultFile(string targetFilePath, string replaceFromFolderPath, string replaceToFolderPath, ref bool warningEncountered, string newFileContents, string xmlFileContents)
         {
             try
             {
+                if (!string.IsNullOrEmpty(xmlFileContents))
+                {
+                    File.WriteAllText(targetFilePath + ".xml", xmlFileContents);
+                }
+
                 File.WriteAllText(targetFilePath, newFileContents);
             }
             catch (Exception ex)

@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SybaseTSqlFormatterLibTest"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SybaseTSqlFormatterLib", "SybaseTSqlFormatterLib\SybaseTSqlFormatterLib.csproj", "{925CF211-F368-4778-B7E4-381A2C5A5994}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SybaseTSqlFormatterCmdLine", "SybaseTSqlFormatterCmdLine\SybaseTSqlFormatterCmdLine.csproj", "{511A03BA-1D75-440F-AE33-F869DC2B222E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PoorMansTSqlFormatterCmdLine", "PoorMansTSqlFormatterCmdLine\PoorMansTSqlFormatterCmdLine.csproj", "{5FA98EDC-12DA-4580-9845-788590C59922}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,10 +27,10 @@ Global
 		{4C350944-937B-4416-8442-3197FC7098F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C350944-937B-4416-8442-3197FC7098F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C350944-937B-4416-8442-3197FC7098F2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{511A03BA-1D75-440F-AE33-F869DC2B222E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{511A03BA-1D75-440F-AE33-F869DC2B222E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{511A03BA-1D75-440F-AE33-F869DC2B222E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{511A03BA-1D75-440F-AE33-F869DC2B222E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FA98EDC-12DA-4580-9845-788590C59922}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FA98EDC-12DA-4580-9845-788590C59922}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FA98EDC-12DA-4580-9845-788590C59922}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FA98EDC-12DA-4580-9845-788590C59922}.Release|Any CPU.Build.0 = Release|Any CPU
 		{77DC8F7A-13DD-445E-8DE3-FEFC05012ED6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{77DC8F7A-13DD-445E-8DE3-FEFC05012ED6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77DC8F7A-13DD-445E-8DE3-FEFC05012ED6}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -47,7 +47,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = SybaseTSqlFormatterCmdLine\SybaseTSqlFormatterCmdLine.csproj
+		StartupItem = PoorMansTSqlFormatterCmdLine\PoorMansTSqlFormatterCmdLine.csproj
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -58,7 +58,7 @@ namespace PoorMansTSqlFormatterLib.Parsers
         static Regex _CursorDetector = new Regex(@"^DECLARE [\p{L}0-9_\$\@\#]+ ((INSENSITIVE|SCROLL) ){0,2}CURSOR "); //note the use of "unicode letter" in identifier rule
         static Regex _TriggerConditionDetector = new Regex(@"^(FOR|AFTER|INSTEAD OF)( (INSERT|UPDATE|DELETE) (, (INSERT|UPDATE|DELETE) )?(, (INSERT|UPDATE|DELETE) )?)"); //note the use of "unicode letter" in identifier rule
 
-        public XmlDocument ParseSQL(ITokenList tokenList)
+		public virtual XmlDocument ParseSQL(ITokenList tokenList)
         {
             ParseTree sqlTree = new ParseTree(SqlXmlConstants.ENAME_SQL_ROOT);
             sqlTree.StartNewStatement();

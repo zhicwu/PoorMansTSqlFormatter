@@ -187,6 +187,8 @@ r   recursive (par défaut: faux)
 b   backups (par défaut: vrai)
 b   outputFileOrFolder (par défaut: aucun; s'il est spécifié, overrides the backup option)
 l   languageCode (par défaut: langue actuelle si elle est supportée; valeurs valables sont EN, FR et ES)
+sbp use Sybase parser instead (default: false)
+x   generate XML for further analysis (default: false)
 h ? help
 
 On peut désactiver les options booléennes en les suivant d'un "moins", et les activer simplement en les spécifiant, ou aussi en les suivant d'un "plus".
