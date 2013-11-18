@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3049502E-2389-4C0B-88EB-485A0C4C79C1}"
+	ProjectSection(SolutionItems) = preProject
+		CHANGELOG.md = CHANGELOG.md
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PoorMansTSqlFormatterCmdLine_Mono", "PoorMansTSqlFormatterCmdLine\PoorMansTSqlFormatterCmdLine_Mono.csproj", "{5FA98EDC-12DA-4580-9845-788590C59922}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PoorMansTSqlFormatterLib_Mono", "PoorMansTSqlFormatterLib\PoorMansTSqlFormatterLib_Mono.csproj", "{ADBDFDCA-CAB6-4569-9151-0BD42E65B400}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SybaseTSqlFormatterLib_Mono", "SybaseTSqlFormatterLib\SybaseTSqlFormatterLib_Mono.csproj", "{925CF211-F368-4778-B7E4-381A2C5A5994}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SybaseTSqlFormatterLibTest_Mono", "SybaseTSqlFormatterLibTest\SybaseTSqlFormatterLibTest_Mono.csproj", "{77DC8F7A-13DD-445E-8DE3-FEFC05012ED6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PoorMansTSqlFormatterPluginShared_Mono", "PoorMansTSqlFormatterPluginShared\PoorMansTSqlFormatterPluginShared_Mono.csproj", "{4C350944-937B-4416-8442-3197FC7098F2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4C350944-937B-4416-8442-3197FC7098F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C350944-937B-4416-8442-3197FC7098F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C350944-937B-4416-8442-3197FC7098F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C350944-937B-4416-8442-3197FC7098F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FA98EDC-12DA-4580-9845-788590C59922}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FA98EDC-12DA-4580-9845-788590C59922}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FA98EDC-12DA-4580-9845-788590C59922}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FA98EDC-12DA-4580-9845-788590C59922}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77DC8F7A-13DD-445E-8DE3-FEFC05012ED6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77DC8F7A-13DD-445E-8DE3-FEFC05012ED6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77DC8F7A-13DD-445E-8DE3-FEFC05012ED6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77DC8F7A-13DD-445E-8DE3-FEFC05012ED6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{925CF211-F368-4778-B7E4-381A2C5A5994}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{925CF211-F368-4778-B7E4-381A2C5A5994}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{925CF211-F368-4778-B7E4-381A2C5A5994}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{925CF211-F368-4778-B7E4-381A2C5A5994}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADBDFDCA-CAB6-4569-9151-0BD42E65B400}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADBDFDCA-CAB6-4569-9151-0BD42E65B400}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADBDFDCA-CAB6-4569-9151-0BD42E65B400}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADBDFDCA-CAB6-4569-9151-0BD42E65B400}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = PoorMansTSqlFormatterCmdLine\PoorMansTSqlFormatterCmdLine_Mono.csproj
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -40,4 +40,10 @@
   <ItemGroup>
     <Folder Include="Parsers\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PoorMansTSqlFormatterLib\PoorMansTSqlFormatterLib_Mono.csproj">
+      <Project>{ADBDFDCA-CAB6-4569-9151-0BD42E65B400}</Project>
+      <Name>PoorMansTSqlFormatterLib_Mono</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>

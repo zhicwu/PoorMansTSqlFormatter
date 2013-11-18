@@ -57,16 +57,6 @@
     <None Include="Postbuild_Merge.bat" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PoorMansTSqlFormatterLib\PoorMansTSqlFormatterLib.csproj">
-      <Project>{ADBDFDCA-CAB6-4569-9151-0BD42E65B400}</Project>
-      <Name>PoorMansTSqlFormatterLib</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SybaseTSqlFormatterLib\SybaseTSqlFormatterLib.csproj">
-      <Project>{925CF211-F368-4778-B7E4-381A2C5A5994}</Project>
-      <Name>SybaseTSqlFormatterLib</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <!--
     <None Include="Postbuild_Merge.sh" />
     -->
@@ -95,6 +85,16 @@
   -->
   <PropertyGroup>
     <PostBuildEvent Condition=" '$(OS)' != 'Windows_NT' ">sh $(ProjectDir)Postbuild_Merge.sh $(TargetDir)</PostBuildEvent>
-    <PostBuildEvent Condition=" '$(OS)' == 'Windows_NT' ">Call $(ProjectDir)Postbuild_Merge.sh $(TargetDir)</PostBuildEvent>
+    <PostBuildEvent Condition=" '$(OS)' == 'Windows_NT' ">Call $(ProjectDir)Postbuild_Merge.bat $(TargetDir)</PostBuildEvent>
   </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PoorMansTSqlFormatterLib\PoorMansTSqlFormatterLib_Mono.csproj">
+      <Project>{ADBDFDCA-CAB6-4569-9151-0BD42E65B400}</Project>
+      <Name>PoorMansTSqlFormatterLib_Mono</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SybaseTSqlFormatterLib\SybaseTSqlFormatterLib_Mono.csproj">
+      <Project>{925CF211-F368-4778-B7E4-381A2C5A5994}</Project>
+      <Name>SybaseTSqlFormatterLib_Mono</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>

@@ -104,4 +104,14 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <ProjectReference Include="..\PoorMansTSqlFormatterLib\PoorMansTSqlFormatterLib_Mono.csproj">
+      <Project>{ADBDFDCA-CAB6-4569-9151-0BD42E65B400}</Project>
+      <Name>PoorMansTSqlFormatterLib_Mono</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SybaseTSqlFormatterLib\SybaseTSqlFormatterLib_Mono.csproj">
+      <Project>{925CF211-F368-4778-B7E4-381A2C5A5994}</Project>
+      <Name>SybaseTSqlFormatterLib_Mono</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>
