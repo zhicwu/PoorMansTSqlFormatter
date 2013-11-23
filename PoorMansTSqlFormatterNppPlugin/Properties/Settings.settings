@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="ExpandCommaLists" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="TrailingCommas" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -39,7 +39,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="BreakJoinOnSections" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

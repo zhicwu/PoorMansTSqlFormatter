@@ -8,14 +8,15 @@ namespace SybaseTSqlFormatterLib.Parsers
 {
 	public class SybaseTSqlParser : TSqlStandardParser
 	{
-        static readonly string DATE_FORMAT = "MM/dd/yyyy HH:mm:ss %K";
+        static readonly string DATE_FORMAT = "MM/dd/yyyy HH:mm:ss";
 
         static readonly string HEADER_BEGIN = "[/Formatter]";
         static readonly string HEADER_END = "[Formatter/]";
-        static readonly string SQL_HEADER = " " + HEADER_BEGIN + " Formatted with Sybase T-SQL Formatter(version: {0}) at {1} " + HEADER_END;
+        static readonly string SQL_HEADER = " " + HEADER_BEGIN + " Formatted with Sybase T-SQL Formatter(version: {0}) at {1} {2}" + HEADER_END;
 
         static readonly string XPATH_ASTERISK = "//Asterisk[text()='*']";
         static readonly string XPATH_DATATYPE = "//DataTypeKeyword[preceding-sibling::*[1][self::WhiteSpace] and preceding-sibling::*[2][self::And|self::Or|self::Comma|self::OtherKeyword]]";
+        static readonly string XPATH_EXTRA_LINES = "";
 
         static readonly string SIGN_EQUAL = "=";
         static readonly string SIGN_LEFT_JOIN = "*=";
@@ -171,9 +172,13 @@ namespace SybaseTSqlFormatterLib.Parsers
                     }
                 }
 
+                DateTime currentDateTime = DateTime.Now;
                 firstChild.InnerText = string.Format(SQL_HEADER,
                     System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString(),
-                    DateTimeOffset.Now.ToString(DATE_FORMAT));
+                    currentDateTime.ToString(DATE_FORMAT), TimeZone.CurrentTimeZone.GetUtcOffset(currentDateTime));
+
+                // now remove extra lines before and after union/except/intersect keywords
+
             }
 
             return sqlTree;

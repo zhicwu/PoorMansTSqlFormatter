@@ -74,7 +74,8 @@ namespace PoorMansTSqlFormatterNppPlugin
 
             //set up menu items
             PluginBase.SetCommand(0, _generalResourceManager.GetString("FormatButtonText"), formatSqlCommand, new ShortcutKey(false, false, false, Keys.None));
-            PluginBase.SetCommand(1, _generalResourceManager.GetString("OptionsButtonText"), formattingOptionsCommand, new ShortcutKey(false, false, false, Keys.None));
+            // disable option dialog as we want everyone using the same options
+            //PluginBase.SetCommand(1, _generalResourceManager.GetString("OptionsButtonText"), formattingOptionsCommand, new ShortcutKey(false, false, false, Keys.None));
         }
 
         internal static void PluginCleanUp()
@@ -86,50 +87,59 @@ namespace PoorMansTSqlFormatterNppPlugin
         #region " Menu functions "
         internal static void formatSqlCommand()
         {
-            StringBuilder textBuffer = null;
-			StringBuilder outBuffer = null;
-
-            IntPtr currentScintilla = PluginBase.GetCurrentScintilla();
-
-            //apparently calling with null pointer returns selection buffer length: http://www.scintilla.org/ScintillaDoc.html#SCI_GETSELTEXT
-            int selectionBufferLength = (int)Win32.SendMessage(currentScintilla, SciMsg.SCI_GETSELTEXT, 0, 0);
-
-            if (selectionBufferLength > 1)
+            try
             {
-				//prep the buffer/StringBuilder with the right length
-                textBuffer = new StringBuilder(selectionBufferLength);
+                StringBuilder textBuffer = null;
+                StringBuilder outBuffer = null;
 
-				//populate the buffer
-                Win32.SendMessage(currentScintilla, SciMsg.SCI_GETSELTEXT, 0, textBuffer);
+                IntPtr currentScintilla = PluginBase.GetCurrentScintilla();
 
-				//if formatting is successful or user chooses to continue despite error
-				if (FormatAndWarn(textBuffer, out outBuffer))
-				{
-					//replace the selection with the formatted content
-					Win32.SendMessage(currentScintilla, SciMsg.SCI_REPLACESEL, 0, outBuffer);
+                //apparently calling with null pointer returns selection buffer length: http://www.scintilla.org/ScintillaDoc.html#SCI_GETSELTEXT
+                int selectionBufferLength = (int)Win32.SendMessage(currentScintilla, SciMsg.SCI_GETSELTEXT, 0, 0);
 
-					//position of the cursor will automatically be the end of the replaced selection
-				}
+                if (selectionBufferLength > 1)
+                {
+                    //prep the buffer/StringBuilder with the right length
+                    textBuffer = new StringBuilder(selectionBufferLength);
+
+                    //populate the buffer
+                    Win32.SendMessage(currentScintilla, SciMsg.SCI_GETSELTEXT, 0, textBuffer);
+
+                    //if formatting is successful or user chooses to continue despite error
+                    if (FormatAndWarn(textBuffer, out outBuffer))
+                    {
+                        //replace the selection with the formatted content
+                        Win32.SendMessage(currentScintilla, SciMsg.SCI_REPLACESEL, 0, outBuffer);
+
+                        //position of the cursor will automatically be the end of the replaced selection
+                    }
+                }
+                else
+                {
+                    //Do as they say here:
+                    //http://www.scintilla.org/ScintillaDoc.html#SCI_GETTEXT
+                    int docBufferLength = (int)Win32.SendMessage(currentScintilla, SciMsg.SCI_GETTEXT, 0, 0);
+                    int docCursorPosition = (int)Win32.SendMessage(currentScintilla, SciMsg.SCI_GETCURRENTPOS, 0, 0);
+                    textBuffer = new StringBuilder(docBufferLength);
+                    Win32.SendMessage(currentScintilla, SciMsg.SCI_GETTEXT, docBufferLength, textBuffer);
+
+                    if (FormatAndWarn(textBuffer, out outBuffer))
+                    {
+                        //note: the "docBufferLength" always seems to be 1 too high, even for an empty doc it is 1, so am subtracting explicitly to avoid "cursor creep".
+                        int newPosition = (int)Math.Round(1.0 * docCursorPosition * outBuffer.Length / (docBufferLength - 1), 0, MidpointRounding.AwayFromZero);
+                        //replace the doc content
+                        Win32.SendMessage(currentScintilla, SciMsg.SCI_SETTEXT, 0, outBuffer);
+                        //set the cursor position to somewhere reasonable
+                        Win32.SendMessage(currentScintilla, SciMsg.SCI_SETSEL, newPosition, newPosition);
+                    }
+                }
             }
-            else
+            catch (Exception e)
             {
-				//Do as they say here:
-                //http://www.scintilla.org/ScintillaDoc.html#SCI_GETTEXT
-				int docBufferLength = (int)Win32.SendMessage(currentScintilla, SciMsg.SCI_GETTEXT, 0, 0);
-				int docCursorPosition = (int)Win32.SendMessage(currentScintilla, SciMsg.SCI_GETCURRENTPOS, 0, 0);
-				textBuffer = new StringBuilder(docBufferLength);
-                Win32.SendMessage(currentScintilla, SciMsg.SCI_GETTEXT, docBufferLength, textBuffer);
-
-				if (FormatAndWarn(textBuffer, out outBuffer))
-				{
-					//note: the "docBufferLength" always seems to be 1 too high, even for an empty doc it is 1, so am subtracting explicitly to avoid "cursor creep".
-					int newPosition = (int)Math.Round(1.0 * docCursorPosition * outBuffer.Length / (docBufferLength - 1), 0, MidpointRounding.AwayFromZero);
-					//replace the doc content
-					Win32.SendMessage(currentScintilla, SciMsg.SCI_SETTEXT, 0, outBuffer);
-					//set the cursor position to somewhere reasonable
-					Win32.SendMessage(currentScintilla, SciMsg.SCI_SETSEL, newPosition, newPosition);
-				}
-			}
+                // TODO: log errors somewhere else...
+                Console.WriteLine(e.ToString());
+                throw e;
+            }
         }
 
 		private static bool FormatAndWarn(StringBuilder textBuffer, out StringBuilder outBuffer)

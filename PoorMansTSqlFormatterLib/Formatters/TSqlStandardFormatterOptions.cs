@@ -34,14 +34,14 @@ namespace PoorMansTSqlFormatterLib.Formatters
             IndentString = "\t";
             SpacesPerTab = 4;
             MaxLineWidth = 999;
-            ExpandCommaLists = true;
+            ExpandCommaLists = false;
             TrailingCommas = false;
             SpaceAfterExpandedComma = false;
             ExpandBooleanExpressions = true;
             ExpandBetweenConditions = true;
             ExpandCaseStatements = true;
             UppercaseKeywords = true;
-            BreakJoinOnSections = false;
+            BreakJoinOnSections = true;
             HTMLColoring = false;
 			KeywordStandardization = false;
 			ExpandInLists = true;

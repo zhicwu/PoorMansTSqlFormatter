@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PoorMansTSqlFormatterLib_35
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SybaseTSqlFormatterLib", "SybaseTSqlFormatterLib\SybaseTSqlFormatterLib.csproj", "{925CF211-F368-4778-B7E4-381A2C5A5994}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SybaseTSqlFormatterLibTest", "SybaseTSqlFormatterLibTest\SybaseTSqlFormatterLibTest.csproj", "{77DC8F7A-13DD-445E-8DE3-FEFC05012ED6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +83,10 @@ Global
 		{925CF211-F368-4778-B7E4-381A2C5A5994}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{925CF211-F368-4778-B7E4-381A2C5A5994}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{925CF211-F368-4778-B7E4-381A2C5A5994}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77DC8F7A-13DD-445E-8DE3-FEFC05012ED6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77DC8F7A-13DD-445E-8DE3-FEFC05012ED6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77DC8F7A-13DD-445E-8DE3-FEFC05012ED6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77DC8F7A-13DD-445E-8DE3-FEFC05012ED6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
