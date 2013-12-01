@@ -132,6 +132,7 @@ namespace PoorMansTSqlFormatterLib.Formatters
                 else
                     state.AddOutputContentRaw(tempFormatter.FormatSQLTree(skippedXml));
             }
+
             return state.DumpOutput();
         }
 
@@ -330,6 +331,11 @@ namespace PoorMansTSqlFormatterLib.Formatters
                 case SqlXmlConstants.ENAME_EXPRESSION_PARENS:
                 case SqlXmlConstants.ENAME_SELECTIONTARGET_PARENS:
 				case SqlXmlConstants.ENAME_IN_PARENS:
+                    // updated by Zhichun Wu, to avoid extra space between data type and parens
+                    if (contentElement.Name.Equals(SqlXmlConstants.ENAME_DDL_PARENS))
+                    {
+                        state.WordSeparatorExpected = false;
+                    }
 					WhiteSpace_SeparateWords(state);
 					if (contentElement.Name.Equals(SqlXmlConstants.ENAME_EXPRESSION_PARENS) || contentElement.Name.Equals(SqlXmlConstants.ENAME_IN_PARENS))
                         state.IncrementIndent();

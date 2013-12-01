@@ -34,7 +34,7 @@ namespace PoorMansTSqlFormatterLib.Formatters
             IndentString = "\t";
             SpacesPerTab = 4;
             MaxLineWidth = 999;
-            ExpandCommaLists = false;
+            ExpandCommaLists = true;
             TrailingCommas = false;
             SpaceAfterExpandedComma = false;
             ExpandBooleanExpressions = true;
@@ -44,7 +44,7 @@ namespace PoorMansTSqlFormatterLib.Formatters
             BreakJoinOnSections = true;
             HTMLColoring = false;
 			KeywordStandardization = false;
-			ExpandInLists = true;
+			ExpandInLists = false;
 			NewClauseLineBreaks = 1;
 			NewStatementLineBreaks = 2;
 		}
