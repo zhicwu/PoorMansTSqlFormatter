@@ -48,6 +48,20 @@ namespace SybaseTSqlFormatterLibTest
 
             Assert.AreEqual(0, xml.SelectNodes("//Asterisk").Count);
         }
+
+		[Test()]
+		public void TestParseDataTypeDeclare() 
+		{
+			var sql = @"declare varchar(10) a";
+
+			TSqlStandardTokenizer tokenizer = new TSqlStandardTokenizer();
+			var tokenList = tokenizer.TokenizeSQL(sql);
+
+			SybaseTSqlParser parser = new SybaseTSqlParser();
+			XmlDocument xml = parser.ParseSQL(tokenList);
+
+			Assert.AreEqual(2, xml.SelectNodes("//WhiteSpace").Count);
+		}
     }
 }
 
