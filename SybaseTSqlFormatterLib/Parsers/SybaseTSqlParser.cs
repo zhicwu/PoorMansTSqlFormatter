@@ -16,7 +16,7 @@ namespace SybaseTSqlFormatterLib.Parsers
 
         static readonly string XPATH_ASTERISK = "//Asterisk[text()='*']";
         static readonly string XPATH_DATATYPE = "//DataTypeKeyword[preceding-sibling::*[1][self::WhiteSpace] and preceding-sibling::*[2][self::And|self::Or|self::Comma|self::OtherKeyword]]";
-        static readonly string XPATH_EXTRA_LINES = "";
+        // static readonly string XPATH_EXTRA_LINES = "";
 
         static readonly string SIGN_EQUAL = "=";
         static readonly string SIGN_LEFT_JOIN = "*=";

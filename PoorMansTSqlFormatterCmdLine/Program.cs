@@ -172,6 +172,12 @@ namespace PoorMansTSqlFormatterCmdLine
                 return 1;
             }
 
+            // this for preventing keywords from being "standardized" as Sybase prefers "tran" instead of "transaction"
+            if (useSybaseParser)
+            {
+                options.KeywordStandardization = false;
+            }
+
             var formatter = new PoorMansTSqlFormatterLib.Formatters.TSqlStandardFormatter(options);
             formatter.ErrorOutputPrefix = _generalResourceManager.GetString("ParseErrorWarningPrefix") + Environment.NewLine;
             var formattingManager = new PoorMansTSqlFormatterLib.SqlFormattingManager(formatter);

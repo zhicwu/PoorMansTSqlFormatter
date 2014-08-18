@@ -135,4 +135,7 @@
     <PostBuildEvent Condition=" '$(OS)' != 'Windows_NT' ">sh $(ProjectDir)Postbuild_Merge.sh $(TargetDir) $(OS)</PostBuildEvent>
     <PostBuildEvent Condition=" '$(OS)' == 'Windows_NT' ">Call $(ProjectDir)Postbuild_Merge.bat $(TargetDir)</PostBuildEvent>
   </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>Call $(ProjectDir)Postbuild_Merge.bat $(TargetDir)</PostBuildEvent>
+  </PropertyGroup>
 </Project>
