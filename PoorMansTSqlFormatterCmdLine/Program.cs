@@ -172,28 +172,28 @@ namespace PoorMansTSqlFormatterCmdLine
                 return 1;
             }
 
-            var formatter = new PoorMansTSqlFormatterLib.Formatters.TSqlStandardFormatter(options);
-
             // updated by Zhichun Wu, this for preventing keywords from being "standardized" as Sybase prefers "tran" instead of "transaction"
             if (useSybaseParser)
             {
-                formatter.Options.IndentString = "\t";
-                formatter.Options.SpacesPerTab = 4;
-                formatter.Options.MaxLineWidth = 999;
-                formatter.Options.ExpandCommaLists = true;
-                formatter.Options.TrailingCommas = false;
-                formatter.Options.SpaceAfterExpandedComma = false;
-                formatter.Options.ExpandBooleanExpressions = true;
-                formatter.Options.ExpandBetweenConditions = true;
-                formatter.Options.ExpandCaseStatements = true;
-                formatter.Options.UppercaseKeywords = true;
-                formatter.Options.BreakJoinOnSections = true;
-                formatter.Options.HTMLColoring = false;
-                formatter.Options.KeywordStandardization = false;
-                formatter.Options.ExpandInLists = false;
-                formatter.Options.NewClauseLineBreaks = 1;
-                formatter.Options.NewStatementLineBreaks = 2;
+                options.IndentString = "\t";
+                options.SpacesPerTab = 4;
+                options.MaxLineWidth = 999;
+                options.ExpandCommaLists = true;
+                options.TrailingCommas = false;
+                options.SpaceAfterExpandedComma = false;
+                options.ExpandBooleanExpressions = true;
+                options.ExpandBetweenConditions = true;
+                options.ExpandCaseStatements = true;
+                options.UppercaseKeywords = true;
+                options.BreakJoinOnSections = true;
+                options.HTMLColoring = false;
+                options.KeywordStandardization = false;
+                options.ExpandInLists = false;
+                options.NewClauseLineBreaks = 1;
+                options.NewStatementLineBreaks = 2;
             }
+
+            var formatter = new PoorMansTSqlFormatterLib.Formatters.TSqlStandardFormatter(options);
 
             formatter.ErrorOutputPrefix = _generalResourceManager.GetString("ParseErrorWarningPrefix") + Environment.NewLine;
             var formattingManager = new PoorMansTSqlFormatterLib.SqlFormattingManager(formatter);
