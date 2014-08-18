@@ -175,6 +175,8 @@ namespace PoorMansTSqlFormatterCmdLine
             // this for preventing keywords from being "standardized" as Sybase prefers "tran" instead of "transaction"
             if (useSybaseParser)
             {
+                options.ExpandInLists = false;
+                options.BreakJoinOnSections = true;
                 options.KeywordStandardization = false;
             }
 
