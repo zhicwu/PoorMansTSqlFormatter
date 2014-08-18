@@ -45,6 +45,7 @@ namespace SybaseTSqlFormatterLib.Parsers
 			TSqlStandardParser.KeywordList.Add("HAVING", KeywordType.OtherKeyword);
 			TSqlStandardParser.KeywordList.Add("INTO", KeywordType.OtherKeyword);
 			TSqlStandardParser.KeywordList.Add("IS", KeywordType.OtherKeyword);
+            TSqlStandardParser.KeywordList.Add("IN", KeywordType.OperatorKeyword);
 			TSqlStandardParser.KeywordList.Add("NULL", KeywordType.OtherKeyword);
 			TSqlStandardParser.KeywordList.Add("ON", KeywordType.OtherKeyword);
 			TSqlStandardParser.KeywordList.Add("ORDER", KeywordType.OtherKeyword);

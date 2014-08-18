@@ -100,6 +100,20 @@ return
 
             Assert.AreEqual(1, xml.SelectNodes("//Other[text()='name']").Count);
         }
+
+        [Test()]
+        public void TestParseSqlWithInKeyword()
+        {
+            var sql = @"select a,b,c from k where a in ('a', 1, 'c')";
+
+            TSqlStandardTokenizer tokenizer = new TSqlStandardTokenizer();
+            var tokenList = tokenizer.TokenizeSQL(sql);
+
+            SybaseTSqlParser parser = new SybaseTSqlParser();
+            XmlDocument xml = parser.ParseSQL(tokenList);
+
+            Assert.AreEqual(1, xml.SelectNodes("//AlphaOperator[text()='in']").Count);
+        }
     }
 }
 

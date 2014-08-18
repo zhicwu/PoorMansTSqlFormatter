@@ -172,15 +172,29 @@ namespace PoorMansTSqlFormatterCmdLine
                 return 1;
             }
 
-            // this for preventing keywords from being "standardized" as Sybase prefers "tran" instead of "transaction"
+            var formatter = new PoorMansTSqlFormatterLib.Formatters.TSqlStandardFormatter(options);
+
+            // updated by Zhichun Wu, this for preventing keywords from being "standardized" as Sybase prefers "tran" instead of "transaction"
             if (useSybaseParser)
             {
-                options.ExpandInLists = false;
-                options.BreakJoinOnSections = true;
-                options.KeywordStandardization = false;
+                formatter.Options.IndentString = "\t";
+                formatter.Options.SpacesPerTab = 4;
+                formatter.Options.MaxLineWidth = 999;
+                formatter.Options.ExpandCommaLists = true;
+                formatter.Options.TrailingCommas = false;
+                formatter.Options.SpaceAfterExpandedComma = false;
+                formatter.Options.ExpandBooleanExpressions = true;
+                formatter.Options.ExpandBetweenConditions = true;
+                formatter.Options.ExpandCaseStatements = true;
+                formatter.Options.UppercaseKeywords = true;
+                formatter.Options.BreakJoinOnSections = true;
+                formatter.Options.HTMLColoring = false;
+                formatter.Options.KeywordStandardization = false;
+                formatter.Options.ExpandInLists = false;
+                formatter.Options.NewClauseLineBreaks = 1;
+                formatter.Options.NewStatementLineBreaks = 2;
             }
 
-            var formatter = new PoorMansTSqlFormatterLib.Formatters.TSqlStandardFormatter(options);
             formatter.ErrorOutputPrefix = _generalResourceManager.GetString("ParseErrorWarningPrefix") + Environment.NewLine;
             var formattingManager = new PoorMansTSqlFormatterLib.SqlFormattingManager(formatter);
             if (useSybaseParser) {
